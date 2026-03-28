@@ -10,12 +10,10 @@ export default function Skills() {
                     {skillGroups.map((group) => (
                         <div key={group.category} className="rounded-2xl border border-neutral-200 p-6">
                             <h3 className="text-lg font-semibold">{group.category}</h3>
+                            
                             <ul className="mt-4 flex flex-wrap gap-2">
                                 {group.items.map((item) => (
-                                    <li
-                                        key={item}
-                                        className="rounded-full bg-neutral-1oo px-3 py-1 text-sm"
-                                    >
+                                    <li key={item} className="rounded-full bg-neutral-1oo px-3 py-1 text-sm">
                                         {item}
                                     </li>
                                 ))}

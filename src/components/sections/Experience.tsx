@@ -15,10 +15,7 @@ export default function ExperiencePreview() {
 
             <div className="mt-8 space-y-6">
                 {experience.slice(0,2).map((item) => (
-                    <article
-                        key={`${item.organization}-${item.role}`}
-                        className="rounded-2xl border border-neutral-200 p-6"
-                    >
+                    <article key={`${item.organization}-${item.role}`} className="rounded-2xl border border-neutral-200 p-6">
                         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                             <div>
                                 <h3 className="text-lg font-semibold">{item.organization}</h3>
