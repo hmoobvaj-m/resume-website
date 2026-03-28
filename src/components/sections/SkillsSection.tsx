@@ -18,7 +18,7 @@ export default function SkillsSection() {
                         <div key={group.category} className="rounded-2xl border border-neutral-500 p-6">
                             <h3 className="text-lg font-semibold text-center">{group.category}</h3>
 
-                            <ul className="mt-4 flex flex-wrap gap-2 items-center sm:justify-center">
+                            <ul className="mt-4 flex flex-wrap gap-2 sm:justify-center">
                                 {group.items.map((item) => (
                                     <li key={item} className="rounded-full bg-neutral-1oo px-3 py-1 text-sm">
                                         {item}
