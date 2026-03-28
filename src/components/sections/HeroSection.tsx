@@ -4,13 +4,13 @@ import { siteConfig } from "@/content/site"
 export default function Hero() {
     return (
         <section className="py-20 md:py-28">
-            <div className="mx-auto max-w-5x1 px-6">
-                <div className="max-w-3x1">
+            <div className="mx-auto max-w-5xl px-6">
+                <div className="max-w-3xl">
                     <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
                         {siteConfig.title}
                     </p>
 
-                    <h1 className="text-4x1 font-bold tracking-tight md:text-6x1">
+                    <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
                         {siteConfig.name}
                     </h1>
 
@@ -19,9 +19,9 @@ export default function Hero() {
                     </p>
 
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                        <Link href="/projects" className="rounded-lg border border-neutral-3oo px-5 py-3 transition hover:opacity-90">View Projects</Link>
-                        <Link href="/projects" className="rounded-lg border border-neutral-3oo px-5 py-3 transition hover:opacity-90">View Resume</Link>
-                        <Link href="/projects" className="rounded-lg border border-neutral-3oo px-5 py-3 transition hover:opacity-90">Contact Me</Link>
+                        <Link href="/#projects" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">View Projects</Link>
+                        <Link href="/#resume" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">View Resume</Link>
+                        <Link href="/#contact" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">Contact Me</Link>
                     </div>
                 </div>
             </div>
