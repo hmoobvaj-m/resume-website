@@ -3,7 +3,7 @@ import { siteConfig } from "@/content/site"
 
 export default function ContactMe() {
     return (
-        <section id="contact" className="py-20">
+        <section id="contact" className="py-5">
             <div className="mx-auto max-w-5xl px-6">
                 <div className="rounded-3xl border border-neutral-200 p-8 md:p-10">
                     <h2 className="text-center text-2xl font-semibold md:text-3xl">

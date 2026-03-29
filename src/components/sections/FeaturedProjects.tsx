@@ -5,7 +5,7 @@ export default function FeaturedProjects() {
     const featuredProjects = projects.filter((project) => project.featured);
 
     return (
-        <section id="projects" className="py-16">
+        <section id="projects" className="py-8">
             <div className="mx-auto max-w-5xl px-6">
                 <div className="mb-8">
                     <h2 className="text-center text-2xl font-semibold md:text-3xl">Featured Projects</h2>
@@ -14,8 +14,9 @@ export default function FeaturedProjects() {
 
                 <div className="grid gap-6 md:grid-cols-2">
                     {featuredProjects.map((project) => (
-                        <article key={project.title} className="rounded-2xl border border-neutral-700 bg-neutral-900 p-6 shadow-sm">
+                        <article key={project.title} className="rounded-2xl border border-neutral-400 p-6 shadow-sm">
                             <h3 className="text-center text-xl font-semibold">{project.title}</h3>
+
                             <p className="mt-3 text-neutral-300">{project.description}</p>
 
                             <ul className="mt-4 flex flex-wrap gap-2">

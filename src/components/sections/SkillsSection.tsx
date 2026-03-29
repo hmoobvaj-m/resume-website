@@ -9,7 +9,7 @@ export default function SkillsSection() {
     ]
 
     return (
-        <section className="py-16">
+        <section className="py-8">
             <div className="mx-auto max-w-5xl px-6">
                 <h2 className="text-2xl font-semibold md:text-3xl text-center">Skills</h2>
 
@@ -18,9 +18,9 @@ export default function SkillsSection() {
                         <div key={group.category} className="rounded-2xl border border-neutral-500 p-6">
                             <h3 className="text-lg font-semibold text-center">{group.category}</h3>
 
-                            <ul className="mt-4 flex flex-wrap gap-2 justify-center">
+                            <ul className="mt-4 list-disc list-inside space-y-2">
                                 {group.items.map((item) => (
-                                    <li key={item} className="rounded-full bg-neutral-100 px-3 py-1 text-sm">
+                                    <li key={item} className="text-sm">
                                         {item}
                                     </li>
                                 ))}

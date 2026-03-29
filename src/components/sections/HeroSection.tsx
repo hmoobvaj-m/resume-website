@@ -3,9 +3,9 @@ import { siteConfig } from "@/content/site"
 
 export default function Hero() {
     return (
-        <section className="py-20 md:py-28">
+        <section className="py-10 md:py-14">
             <div className="mx-auto max-w-5xl px-6">
-                <div className="max-w-3xl text-center">
+                <div className="max-auto text-center justify-center">
                     <h2 className="text-4xl font-bold tracking-tight md:text-6xl text-neutral-300">{siteConfig.name}</h2>
 
                     <h3 className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-neutral-300">{siteConfig.title}</h3>

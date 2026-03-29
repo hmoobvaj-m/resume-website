@@ -3,7 +3,7 @@ import { resumeData } from "@/content/resume";
 
 export default function ExperiencePreview() {
   return (
-    <section id="resume" className="py-16 md:py-24">
+    <section id="resume" className="py-8 md:py-12">
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex items-end justify-between gap-4">
           <div>

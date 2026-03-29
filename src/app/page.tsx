@@ -8,9 +8,9 @@ export default function HomePage() {
     return (
         <main>
             <HeroSection />
+            <ContactMe />
             <Experience />
             <FeaturedProjects />
-            <ContactMe />
             <SkillsSection />
         </main>
     )
