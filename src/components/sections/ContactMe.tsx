@@ -11,12 +11,13 @@ export default function ContactMe() {
                     </h2>
 
                     <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-                        <Link href={`mailto:${siteConfig.email}`} className="rounded-lg border bg-black px-5 py-3 text-white">Email Me</Link>
+                        <Link href={`mailto:${siteConfig.email}`} target="_blank" rel="noopener noreferrer" className="rounded-lg border bg-black px-5 py-3 text-white">Email Me</Link>
 
-                        <Link href={siteConfig.github} className="rounded-lg border px-5 py-3">Github</Link>
+                        <Link href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="rounded-lg border px-5 py-3">Github</Link>
 
-                        <Link href={siteConfig.linkedin} className="rounded-lg border px-5 py-3">LinkedIn</Link>
+                        <Link href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="rounded-lg border px-5 py-3">LinkedIn</Link>
                     </div>
+                    <p className="mt-4 text-center text-sm text-neutral-300">Or email me directly at {siteConfig.email}</p>
                 </div>
             </div>
         </section>
