@@ -14,7 +14,7 @@ export default function Hero() {
 
                     <div className="mt-8 flex flex-col gap-3 items-center sm:flex-row sm:justify-center">
                         <Link href="/#projects" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">View Projects</Link>
-                        <Link href="/#resume" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">View Resume</Link>
+                        <Link href="/#resume" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">View Experience</Link>
                         <Link href="/#contact" className="rounded-lg border border-neutral-300 px-5 py-3 transition hover:opacity-90">Contact Me</Link>
                     </div>
                 </div>

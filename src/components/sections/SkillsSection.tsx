@@ -2,10 +2,10 @@ import { resumeData } from "@/content/resume";
 
 export default function SkillsSection() {
     const skillGroups = [
-        { category: "Languages", items: resumeData.skills.languages },
-        { category: "Frameworks", items: resumeData.skills.frameworks },
-        { category: "Databases", items: resumeData.skills.databases },
-        { category: "Tools", items: resumeData.skills.tools },
+        { category: "Programming", items: resumeData.skills.programming },
+        { category: "AI/ML", items: resumeData.skills.aiMl },
+        { category: "Robotics", items: resumeData.skills.robotics },
+        { category: "Infrastructure", items: resumeData.skills.infrastructure },
     ]
 
     return (
@@ -18,9 +18,9 @@ export default function SkillsSection() {
                         <div key={group.category} className="rounded-2xl border border-neutral-500 p-6">
                             <h3 className="text-lg font-semibold text-center">{group.category}</h3>
 
-                            <ul className="mt-4 flex flex-wrap gap-2 sm:justify-center">
+                            <ul className="mt-4 flex flex-wrap gap-2 justify-center">
                                 {group.items.map((item) => (
-                                    <li key={item} className="rounded-full bg-neutral-1oo px-3 py-1 text-sm">
+                                    <li key={item} className="rounded-full bg-neutral-100 px-3 py-1 text-sm">
                                         {item}
                                     </li>
                                 ))}
