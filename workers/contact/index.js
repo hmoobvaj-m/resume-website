@@ -153,11 +153,13 @@ const contactWorker = {
             return reject(413, "Request too large.");
         }
 
-        const ip = request.headers.get("CF-Connecting-IP");
-
         if (request.headers.get("Origin") !== url.origin) {
             return reject(403, "Request rejected.");
         }
+
+        const ip = cleanString(request.headers.get("CF-Connecting-IP"));
+
+        if (!ip) return reject(403, "Request rejected.");
 
         if (!env.TURNSTILE_SECRET_KEY || !env.RESEND_API_KEY
             || !env.CONTACT_FROM || !env.CONTACT_TO) {

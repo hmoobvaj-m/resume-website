@@ -5,6 +5,7 @@ import contactWorker from "../../workers/contact/index.js";
 const ORIGIN = "https://matthew.hmoobvaj.us";
 const ENDPOINT = `${ORIGIN}/api/contact`;
 const CLIENT_IP = "192.0.2.10";
+const CLIENT_IPV6 = "2001:db8::10";
 const MAX_BODY_BYTES = 16 * 1024;
 
 const TURNSTILE_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -33,11 +34,13 @@ function createRequest({
     contentType = "application/json",
     body = JSON.stringify(VALID_BODY),
     contentLength,
+    ip = CLIENT_IP,
+    forwardedFor = null,
 } = {}) {
-    const headers = new Headers({
-        "CF-Connecting-IP": CLIENT_IP,
-    });
+    const headers = new Headers();
 
+    if (ip !== null) headers.set("CF-Connecting-IP", ip);
+    if (forwardedFor !== null) headers.set("X-Forwarded-For", forwardedFor);
     if (origin !== null) headers.set("Origin", origin);
     if (contentType !== null) headers.set("Content-Type", contentType);
     if (contentLength !== undefined) headers.set("Content-Length", String(contentLength));
@@ -241,6 +244,51 @@ for (const scenario of requestCases) {
         assertNoProvidersCalled(calls);
     });
 }
+
+// Client IP validation
+
+const invalidIpCases = [
+    ["missing client IP headers", { ip: null }],
+    ["empty client IP headers", { ip: "" }],
+    ["whitespace-only client IP headers", { ip: "   " }],
+    ["forwarding headers without Cloudflare client IP", {
+        ip: null,
+        forwardedFor: CLIENT_IP,
+    }],
+];
+
+for (const [name, requestOptions] of invalidIpCases) {
+    test(`rejects ${name}`, async (t) => {
+        const { env, calls } = createEnvironment(t);
+
+        const response = await contactWorker.fetch(
+            createRequest(requestOptions),
+            env,
+        );
+
+        const body = await assertResponse(response, 403);
+
+        assert.equal(body.message, "Request rejected.");
+        assert.equal(calls.ipLimiter.length, 0);
+        assertNoProvidersCalled(calls);
+    });
+}
+
+test("accepts IPv6 client addresses", async (t) => {
+    const { env, calls } = createEnvironment(t);
+
+    const response = await contactWorker.fetch(
+        createRequest({ ip: CLIENT_IPV6 }),
+        env,
+    );
+
+    await assertResponse(response, 200);
+
+    assert.deepEqual(calls.ipLimiter, [{ key: CLIENT_IPV6 }]);
+    assert.equal(calls.turnstile.length, 1);
+    assert.equal(calls.turnstile[0].body.get("remoteip"), CLIENT_IPV6);
+    assert.equal(calls.resend.length, 1);
+});
 
 // Contact field validation
 
