@@ -1,51 +1,89 @@
 import { projects } from "@/content/projects";
+import Icon, { type IconName } from "@/components/ui/Icon";
+
+const projectIcons: Record<string, IconName> = {
+    "studysync": "brain",
+    "manufacturing-inspection": "scan",
+    "proxmox-homelab": "server",
+    "ipex-llm": "cpu",
+};
 
 export default function FeaturedProjects() {
     const featuredProjects = projects.filter((project) => project.featured);
 
     return (
-        <section id="projects" className="scroll-mt-8 py-10 md:py-12">
-            <div className="mx-auto max-w-5xl px-6">
+        <section id="projects" className="section-spacing border-y border-border">
+            <div className="site-shell">
                 <div className="mb-6">
-                    <h2 className="text-2xl font-semibold md:text-3xl">
-                        Featured Projects
-                    </h2>
+                    <h2 className="section-title">Featured Projects</h2>
 
-                    <p className="mt-2 text-neutral-400">
-                        Selected personal projects and technologies.
+                    <p className="section-description">
+                        Selected work across software engineering, artificial intelligence, and infrastructure.
                     </p>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                     {featuredProjects.map((project) => (
-                        <article key={project.title} className="surface-card flex flex-col">
-                            <h3 className="text-xl font-semibold text-neutral-100">
+                        <article
+                            key={project.id}
+                            id={`project-${project.id}`}
+                            tabIndex={-1}
+                            className="surface-card flex h-full min-w-0 flex-col scroll-mt-4 target:border-accent"
+                        >
+                            <div className="mb-5 flex items-start justify-between gap-4">
+                                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-raised text-accent">
+                                    <Icon
+                                        name={projectIcons[project.id] ?? "code"}
+                                        className="size-6"
+                                    />
+                                </div>
+
+                                {project.period && (
+                                    <p className="text-right text-xs font-medium leading-5 text-muted">
+                                        {project.period}
+                                    </p>
+                                )}
+                            </div>
+
+                            <h3 className="text-xl font-semibold tracking-tight text-foreground">
                                 {project.title}
                             </h3>
 
-                            <p className="mt-3 text-sm leading-7 text-neutral-400">
+                            {project.subtitle && (
+                                <p className="mt-1 text-sm font-medium leading-6 text-accent">
+                                    {project.subtitle}
+                                </p>
+                            )}
+
+                            <p className="mt-4 text-sm leading-7 text-muted">
                                 {project.description}
                             </p>
 
-                            <ul className="mb-5 mt-4 flex flex-wrap gap-2">
-                                {project.tech.map((item) => (
-                                    <li key={item} className="rounded-md border border-neutral-700 bg-neutral-800 px-3 py-1 text-xs text-neutral-300">
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="mt-auto pt-5">
+                                <ul aria-label="Technologies" className="flex flex-wrap gap-2">
+                                    {project.tech.map((technology) => (
+                                        <li key={technology} className="tech-tag">
+                                            {technology}
+                                        </li>
+                                    ))}
+                                </ul>
 
-                            <div className="mt-auto flex flex-wrap gap-3">
-                                {project.github && (
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="button-secondary text-sm">
-                                        Source repository
-                                    </a>
-                                )}
+                                {(project.github || project.live) && (
+                                    <div className="mt-5 flex flex-wrap gap-3 border-t border-border pt-5">
+                                        {project.github && (
+                                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="button-secondary">
+                                                <Icon name="github" className="size-4" />
+                                                Source Repository
+                                            </a>
+                                        )}
 
-                                {project.live && (
-                                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="button-secondary text-sm">
-                                        View live site
-                                    </a>
+                                        {project.live && (
+                                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="button-secondary">
+                                                View Project
+                                                <Icon name="external-link" className="size-4" />
+                                            </a>
+                                        )}
+                                    </div>
                                 )}
                             </div>
                         </article>

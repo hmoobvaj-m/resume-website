@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
+import Icon, { type IconName } from "@/components/ui/Icon";
 
 type ModalProps = {
     title: string;
-    triggerLabel: string;
+    titleIcon?: IconName;
+    triggerLabel: ReactNode;
     triggerClassName?: string;
     fallbackHref?: string;
     actions?: ReactNode;
@@ -16,6 +18,7 @@ type ModalProps = {
 
 export default function Modal({
     title,
+    titleIcon,
     triggerLabel,
     triggerClassName = "button-secondary",
     fallbackHref,
@@ -24,6 +27,7 @@ export default function Modal({
     wide = false,
 }: ModalProps) {
     const dialogRef = useRef<HTMLDialogElement>(null);
+    const triggerRef = useRef<HTMLElement | null>(null);
     const titleId = useId();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -35,12 +39,20 @@ export default function Modal({
         if (!dialog || typeof dialog.showModal !== "function" || dialog.open) return;
 
         event.preventDefault();
+
+        triggerRef.current = event.currentTarget;
+
         dialog.showModal();
         setIsOpen(true);
     }
 
     function closeDialog() {
         dialogRef.current?.close();
+    }
+
+    function handleClose() {
+        setIsOpen(false);
+        triggerRef.current?.focus();
     }
 
     return (
@@ -58,28 +70,36 @@ export default function Modal({
             <dialog
                 ref={dialogRef}
                 aria-labelledby={titleId}
-                onClose={() => setIsOpen(false)}
-                className={`m-auto w-11/12 overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-900 text-neutral-100 shadow-2xl ${wide ? "max-w-4xl" : "max-w-xl"}`}
+                onClose={handleClose}
+                className={`dialog-surface ${wide ? "max-w-4xl" : "max-w-xl"}`}
             >
                 <div className="flex max-h-[90dvh] flex-col">
-                    <header className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-700 px-5 py-4">
-                        <h2 id={titleId} className="text-xl font-semibold">{title}</h2>
+                    <header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-border bg-surface-raised px-4 py-3 sm:px-6 sm:py-4">
+                        <h2 id={titleId} className="flex min-w-0 flex-1 items-center gap-3 text-lg font-semibold tracking-tight sm:text-xl">
+                            {titleIcon && (
+                                <Icon name={titleIcon} className="size-6 text-accent" />
+                            )}
 
-                        <div className="flex flex-wrap items-center gap-2">
-                            {actions}
+                            {title}
+                        </h2>
 
-                            <button
-                                type="button"
-                                onClick={closeDialog}
-                                aria-label="Close dialog"
-                                className="rounded-lg px-3 py-2 text-xl text-neutral-300 transition hover:bg-neutral-800 hover:text-white"
-                            >
-                                &times;
-                            </button>
-                        </div>
+                        <button
+                            type="button"
+                            onClick={closeDialog}
+                            aria-label="Close dialog"
+                            className="icon-button order-2 sm:order-3"
+                        >
+                            <Icon name="close" />
+                        </button>
+
+                        {actions && (
+                            <div className="order-3 flex w-full flex-wrap items-center gap-2 sm:order-2 sm:w-auto">
+                                {actions}
+                            </div>
+                        )}
                     </header>
 
-                    <div className="min-h-0 overflow-y-auto overscroll-contain p-5 md:p-8">
+                    <div className="min-h-0 overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-8">
                         {isOpen && children}
                     </div>
                 </div>

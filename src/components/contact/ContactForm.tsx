@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { siteConfig } from "@/content/site";
+import Icon from "@/components/ui/Icon";
 
 type TurnstileApi = {
     render: (container: HTMLElement, options: Record<string, unknown>) => string;
@@ -34,15 +35,18 @@ export default function ContactForm() {
     const configured = Boolean(siteKey) && !siteKey.startsWith("REPLACE_");
 
     useEffect(() => {
-        if (!configured || !scriptReady || !widgetContainer.current) return;
+        const container = widgetContainer.current;
+
+        if (!configured || !scriptReady || !container) return;
 
         const turnstile = getTurnstile();
 
         if (!turnstile) return;
 
-        const id = turnstile.render(widgetContainer.current, {
+        const id = turnstile.render(container, {
             sitekey: siteKey,
             theme: "dark",
+            size: container.clientWidth >= 300 ? "normal" : "compact",
             action: "contact",
             callback: (value: string) => setToken(value),
             "expired-callback": () => setToken(""),
@@ -146,41 +150,61 @@ export default function ContactForm() {
                 />
             )}
 
-            <p className="mb-6 text-sm leading-6 text-neutral-400">
+            <p className="mb-6 text-sm leading-7 text-muted">
                 Have a question, career opportunity, or project in mind?
                 Send a message using the form below.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-5" aria-busy={pending}>
                 <label className="block space-y-2">
-                    <span className="text-sm font-medium">Name</span>
+                    <span className="text-sm font-medium text-foreground">
+                        Name
+                    </span>
 
-                    <input
-                        name="name"
-                        autoComplete="name"
-                        placeholder="Your name"
-                        required
-                        maxLength={100}
-                        className="form-input"
-                    />
+                    <div className="relative">
+                        <Icon
+                            name="user"
+                            className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted"
+                        />
+
+                        <input
+                            name="name"
+                            autoComplete="name"
+                            placeholder="Your name"
+                            required
+                            maxLength={100}
+                            className="form-input pl-11"
+                        />
+                    </div>
                 </label>
 
                 <label className="block space-y-2">
-                    <span className="text-sm font-medium">Email address</span>
+                    <span className="text-sm font-medium text-foreground">
+                        Email address
+                    </span>
 
-                    <input
-                        type="email"
-                        name="email"
-                        autoComplete="email"
-                        placeholder="you@example.com"
-                        required
-                        maxLength={254}
-                        className="form-input"
-                    />
+                    <div className="relative">
+                        <Icon
+                            name="mail"
+                            className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted"
+                        />
+
+                        <input
+                            type="email"
+                            name="email"
+                            autoComplete="email"
+                            placeholder="you@example.com"
+                            required
+                            maxLength={254}
+                            className="form-input pl-11"
+                        />
+                    </div>
                 </label>
 
                 <label className="block space-y-2">
-                    <span className="text-sm font-medium">Message</span>
+                    <span className="text-sm font-medium text-foreground">
+                        Message
+                    </span>
 
                     <textarea
                         name="message"
@@ -189,7 +213,7 @@ export default function ContactForm() {
                         minLength={10}
                         maxLength={3000}
                         rows={5}
-                        className="form-input resize-y"
+                        className="form-input min-h-32 resize-y"
                     />
                 </label>
 
@@ -198,28 +222,31 @@ export default function ContactForm() {
                 </div>
 
                 {configured ? (
-                    <div ref={widgetContainer} className="min-h-16" />
+                    <div className="overflow-x-auto">
+                        <div
+                            ref={widgetContainer}
+                            className="grid min-h-16 w-full justify-items-center"
+                        />
+                    </div>
                 ) : (
-                    <p className="text-sm text-neutral-400">
+                    <p className="rounded-lg border border-border bg-surface-raised p-3 text-sm text-muted">
                         The contact form is currently unavailable.
                     </p>
                 )}
 
-                <p className="text-xs leading-5 text-neutral-400">
-                    Your contact information is used to process and respond to
-                    your inquiry. Please do not include confidential information.
-                    This form uses Cloudflare for abuse prevention and an email
-                    delivery provider to forward your message.
-                </p>
-
                 {status && (
                     <p
                         role={status.type === "error" ? "alert" : "status"}
-                        className={`rounded-lg border p-3 text-sm ${status.type === "success"
-                                ? "border-emerald-800 bg-emerald-950 text-emerald-200"
-                                : "border-red-800 bg-red-950 text-red-200"
+                        className={`flex items-start gap-3 rounded-lg border p-3 text-sm leading-6 ${status.type === "success"
+                            ? "border-emerald-800 bg-emerald-950 text-emerald-200"
+                            : "border-red-800 bg-red-950 text-red-200"
                             }`}
                     >
+                        <Icon
+                            name={status.type === "success" ? "check" : "close"}
+                            className="mt-1 size-4"
+                        />
+
                         {status.message}
                     </p>
                 )}
@@ -229,23 +256,40 @@ export default function ContactForm() {
                     disabled={!configured || !token || pending}
                     className="button-primary w-full"
                 >
-                    {pending ? "Sending message..." : "Send message"}
+                    <Icon name="send" className="size-4" />
+                    {pending ? "Sending Message..." : "Send Message"}
                 </button>
+
+                <p className="text-xs leading-5 text-muted">
+                    Your contact information is used to process and respond to
+                    your inquiry. Please do not include confidential information.
+                    This form uses Cloudflare for abuse prevention and an email
+                    delivery provider to forward your message.
+                </p>
             </form>
 
-            <div className="mt-6 border-t border-neutral-800 pt-5 text-center">
-                <p className="mb-3 text-sm text-neutral-400">
-                    Prefer to connect directly?
-                </p>
+            <div className="mt-6">
+                <div className="flex items-center gap-4">
+                    <div className="h-px flex-1 bg-border" />
 
-                <a
-                    href={siteConfig.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-secondary text-sm"
-                >
-                    Connect on LinkedIn
-                </a>
+                    <p className="text-center text-xs text-muted">
+                        Or connect directly
+                    </p>
+
+                    <div className="h-px flex-1 bg-border" />
+                </div>
+
+                <div className="mt-5 flex justify-center">
+                    <a
+                        href={siteConfig.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="button-secondary"
+                    >
+                        <Icon name="linkedin" className="size-4" />
+                        Connect on LinkedIn
+                    </a>
+                </div>
             </div>
         </>
     );
