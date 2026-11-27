@@ -1,4 +1,5 @@
 export type ResumeProject = {
+    id: string;
     title: string;
     subtitle?: string;
     period?: string;
@@ -8,6 +9,16 @@ export type ResumeProject = {
     featured: boolean;
     github?: string;
     live?: string;
+};
+
+export type ResumeAchievement = {
+    id: string;
+    title: string;
+    organization: string;
+    team?: string;
+    period: string;
+    description: string;
+    projectId?: string;
 };
 
 export type ResumeSkillGroup = {
@@ -57,8 +68,22 @@ export const resumeData = {
         },
     ],
 
+    achievements: [
+        {
+            id: "physical-ai-hackathon-finalist",
+            title: "Physical AI Hackathon Finalist",
+            organization: "Rockwell Automation × NVIDIA Physical AI Hackathon",
+            team: "Team Code Crusaders",
+            period: "October 2026 – November 2026",
+            description:
+                "Selected as a finalist for an AI-powered industrial manufacturing inspection solution.",
+            projectId: "manufacturing-inspection",
+        },
+    ] as ResumeAchievement[],
+
     personalProjects: [
         {
+            id: "studysync",
             title: "StudySync",
             subtitle: "AI-Powered Learning Platform | Senior Capstone Project",
             description:
@@ -68,24 +93,17 @@ export const resumeData = {
                 "Design modular backend architecture using the ports-and-adapters pattern to support extensible AI service integration.",
                 "Contribute to retrieval-augmented generation (RAG), vector-based information retrieval, and LLM-powered study tools.",
             ],
-            tech: [
-                "Next.js",
-                "TypeScript",
-                "Python",
-                "FastAPI",
-                "RAG",
-                "LLMs",
-            ],
+            tech: ["Next.js", "TypeScript", "Python", "FastAPI", "RAG", "LLMs"],
             featured: true,
         },
         {
-            title: "Rockwell Automation × NVIDIA Hackathon",
-            subtitle: "Finalist | Team Code Crusaders",
+            id: "manufacturing-inspection",
+            title: "AI-Powered Manufacturing Inspection",
+            subtitle: "Rockwell Automation × NVIDIA Physical AI Hackathon | Team Code Crusaders",
             period: "October 2026 – November 2026",
             description:
                 "An AI-powered industrial manufacturing inspection solution leveraging computer vision, digital twins, and synthetic data to detect assembly defects.",
             bullets: [
-                "Selected as a finalist for an AI-powered industrial manufacturing inspection solution.",
                 "Collaborated on a computer vision inspection architecture leveraging digital twins and synthetic data to identify manufacturing assembly defects.",
                 "Co-designed a counterfactual inspection methodology comparing real-world camera imagery against simulated manufacturing states to detect anomalies.",
             ],
@@ -98,6 +116,7 @@ export const resumeData = {
             featured: true,
         },
         {
+            id: "proxmox-homelab",
             title: "Proxmox Virtual Homelab",
             subtitle: "Infrastructure & Systems Engineering",
             description:
@@ -107,17 +126,11 @@ export const resumeData = {
                 "Implement VLAN segmentation, firewall policies, VPN connectivity, and reverse proxies to secure self-hosted services.",
                 "Deploy hardware-accelerated AI workloads, IoT automation, DNS filtering, and intelligent device monitoring services.",
             ],
-            tech: [
-                "Proxmox VE",
-                "Linux",
-                "Docker",
-                "LXC",
-                "Networking",
-                "Virtualization",
-            ],
+            tech: ["Proxmox VE", "Linux", "Docker", "LXC", "Networking", "Virtualization"],
             featured: true,
         },
         {
+            id: "ipex-llm",
             title: "IPEX-LLM",
             description:
                 "Self-hosted, GPU-accelerated large language model inference integrated with Home Assistant for natural language control of IoT devices.",
@@ -126,14 +139,7 @@ export const resumeData = {
                 "Compiled and configured the Linux kernel to address compatibility requirements for AI workloads.",
                 "Integrated self-hosted LLM inference with Home Assistant through function calling, enabling natural language control of IoT devices.",
             ],
-            tech: [
-                "PyTorch",
-                "Intel oneAPI",
-                "IPEX-LLM",
-                "Linux",
-                "Conda",
-                "Home Assistant",
-            ],
+            tech: ["PyTorch", "Intel oneAPI", "IPEX-LLM", "Linux", "Conda", "Home Assistant"],
             featured: true,
         },
     ] as ResumeProject[],
@@ -141,25 +147,11 @@ export const resumeData = {
     skills: [
         {
             title: "Programming Languages",
-            items: [
-                "Java",
-                "C",
-                "Python",
-                "TypeScript",
-                "JavaScript",
-            ],
+            items: ["Java", "C", "Python", "TypeScript", "JavaScript"],
         },
         {
             title: "Frameworks & Developer Tools",
-            items: [
-                "React",
-                "Next.js",
-                "FastAPI",
-                "REST APIs",
-                "Git",
-                "GitHub",
-                "GitHub Actions",
-            ],
+            items: ["React", "Next.js", "FastAPI", "REST APIs", "Git", "GitHub", "GitHub Actions"],
         },
         {
             title: "AI & Machine Learning",
@@ -194,13 +186,7 @@ export const resumeData = {
         },
         {
             title: "Enterprise Systems",
-            items: [
-                "SAP S/4HANA",
-                "SAP Fiori",
-                "ERP",
-                "Microsoft SCCM",
-                "Active Directory",
-            ],
+            items: ["SAP S/4HANA", "SAP Fiori", "ERP", "Microsoft SCCM", "Active Directory"],
         },
         {
             title: "Additional Skills",
