@@ -17,8 +17,10 @@ function reject(status, message, headers = {}) {
     return json(status, { ok: false, message }, headers);
 }
 
-function rateLimited() {
-    return reject(429, "Too many requests.", { "Retry-After": "60" });
+function rateLimited(retryAfter = 60) {
+    return reject(429, "Too many requests.", {
+        "Retry-After": String(retryAfter),
+    });
 }
 
 function cleanString(value) {
@@ -169,7 +171,7 @@ const contactWorker = {
         try {
             const attempt = await env.CONTACT_IP_LIMITER.limit({ key: ip });
 
-            if (!attempt.success) return rateLimited();
+            if (!attempt.success) return rateLimited(attempt.retryAfter);
 
             let body;
 
@@ -194,7 +196,7 @@ const contactWorker = {
                 key: "portfolio-contact",
             });
 
-            if (!capacity.success) return rateLimited();
+            if (!capacity.success) return rateLimited(capacity.retryAfter);
 
             const accepted = await sendEmail(data, env);
 
