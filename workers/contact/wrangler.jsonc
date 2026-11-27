@@ -1,0 +1,59 @@
+{
+    "name": "portfolio-contact",
+    "main": "index.js",
+    "compatibility_date": "2026-11-26",
+    "workers_dev": false,
+    "preview_urls": false,
+
+    "routes": [
+        {
+            "pattern": "matthew.hmoobvaj.us/api/contact*",
+            "zone_name": "hmoobvaj.us"
+        },
+        {
+            "pattern": "portfolio.hmoobvaj.us/api/contact*",
+            "zone_name": "hmoobvaj.us"
+        },
+        {
+            "pattern": "professional.hmoobvaj.us/api/contact*",
+            "zone_name": "hmoobvaj.us"
+        },
+        {
+            "pattern": "contact.hmoobvaj.us/api/contact*",
+            "zone_name": "hmoobvaj.us"
+        },
+        {
+            "pattern": "resume.hmoobvaj.us/api/contact*",
+            "zone_name": "hmoobvaj.us"
+        }
+    ],
+
+    "vars": {
+        "ALLOWED_ORIGINS": [
+            "https://matthew.hmoobvaj.us",
+            "https://portfolio.hmoobvaj.us",
+            "https://professional.hmoobvaj.us",
+            "https://contact.hmoobvaj.us",
+            "https://resume.hmoobvaj.us"
+        ]
+    },
+
+    "ratelimits": [
+        {
+            "name": "CONTACT_IP_LIMITER",
+            "namespace_id": "10001",
+            "simple": {
+                "limit": 5,
+                "period": 60
+            }
+        },
+        {
+            "name": "CONTACT_SEND_LIMITER",
+            "namespace_id": "10002",
+            "simple": {
+                "limit": 10,
+                "period": 60
+            }
+        }
+    ]
+}

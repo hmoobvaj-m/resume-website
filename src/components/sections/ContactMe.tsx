@@ -1,25 +1,50 @@
-import Link from "next/link"
-import { siteConfig } from "@/content/site"
+import { siteConfig } from "@/content/site";
+import Modal from "@/components/ui/Modal";
+import ContactForm from "@/components/contact/ContactForm";
 
 export default function ContactMe() {
     return (
-        <section id="contact" className="py-5">
+        <section id="contact" className="scroll-mt-8 py-10 md:py-12">
             <div className="mx-auto max-w-5xl px-6">
-                <div className="rounded-3xl border border-neutral-200 p-8 md:p-10">
-                    <h2 className="text-center text-2xl font-semibold md:text-3xl">
-                        My Contacts
+                <div className="surface-card text-center md:p-10">
+                    <h2 className="text-2xl font-semibold md:text-3xl">
+                        Get in touch
                     </h2>
 
-                    <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-                        <Link href={`mailto:${siteConfig.email}`} target="_blank" rel="noopener noreferrer" className="rounded-lg border bg-black px-5 py-3 text-white">Email Me</Link>
+                    <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-neutral-400 md:text-base">
+                        Interested in discussing career opportunities,
+                        technical projects, or professional collaboration?
+                    </p>
 
-                        <Link href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="rounded-lg border px-5 py-3">Github</Link>
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                        <Modal
+                            title="Contact me"
+                            triggerLabel="Send a message"
+                            triggerClassName="button-primary"
+                        >
+                            <ContactForm />
+                        </Modal>
 
-                        <Link href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" className="rounded-lg border px-5 py-3">LinkedIn</Link>
+                        <a
+                            href={siteConfig.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="button-secondary"
+                        >
+                            LinkedIn
+                        </a>
+
+                        <a
+                            href={siteConfig.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="button-secondary"
+                        >
+                            GitHub
+                        </a>
                     </div>
-                    <p className="mt-4 text-center text-sm text-neutral-300">Or email me directly at {siteConfig.email}</p>
                 </div>
             </div>
         </section>
-    )
+    );
 }
