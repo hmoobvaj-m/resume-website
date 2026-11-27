@@ -140,10 +140,6 @@ const contactWorker = {
             return reject(405, "Method not allowed.", { Allow: "POST" });
         }
 
-        if (!env.ALLOWED_ORIGINS.includes(url.origin) || url.pathname !== "/api/contact") {
-            return reject(404, "Not found.");
-        }
-
         const contentType = request.headers.get("Content-Type")
             ?.split(";")[0].trim().toLowerCase();
 
