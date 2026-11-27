@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
+import Icon from "@/components/ui/Icon";
 
 type ModalProps = {
     title: string;
-    triggerLabel: string;
+    triggerLabel: ReactNode;
     triggerClassName?: string;
     fallbackHref?: string;
     actions?: ReactNode;
@@ -24,6 +25,7 @@ export default function Modal({
     wide = false,
 }: ModalProps) {
     const dialogRef = useRef<HTMLDialogElement>(null);
+    const triggerRef = useRef<HTMLElement | null>(null);
     const titleId = useId();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -35,12 +37,20 @@ export default function Modal({
         if (!dialog || typeof dialog.showModal !== "function" || dialog.open) return;
 
         event.preventDefault();
+
+        triggerRef.current = event.currentTarget;
+
         dialog.showModal();
         setIsOpen(true);
     }
 
     function closeDialog() {
         dialogRef.current?.close();
+    }
+
+    function handleClose() {
+        setIsOpen(false);
+        triggerRef.current?.focus();
     }
 
     return (
@@ -58,12 +68,14 @@ export default function Modal({
             <dialog
                 ref={dialogRef}
                 aria-labelledby={titleId}
-                onClose={() => setIsOpen(false)}
-                className={`m-auto w-11/12 overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-900 text-neutral-100 shadow-2xl ${wide ? "max-w-4xl" : "max-w-xl"}`}
+                onClose={handleClose}
+                className={`dialog-surface ${wide ? "max-w-4xl" : "max-w-xl"}`}
             >
                 <div className="flex max-h-[90dvh] flex-col">
-                    <header className="flex flex-wrap items-center justify-between gap-3 border-b border-neutral-700 px-5 py-4">
-                        <h2 id={titleId} className="text-xl font-semibold">{title}</h2>
+                    <header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-border bg-surface-raised px-5 py-4">
+                        <h2 id={titleId} className="text-xl font-semibold tracking-tight">
+                            {title}
+                        </h2>
 
                         <div className="flex flex-wrap items-center gap-2">
                             {actions}
@@ -72,9 +84,9 @@ export default function Modal({
                                 type="button"
                                 onClick={closeDialog}
                                 aria-label="Close dialog"
-                                className="rounded-lg px-3 py-2 text-xl text-neutral-300 transition hover:bg-neutral-800 hover:text-white"
+                                className="icon-button"
                             >
-                                &times;
+                                <Icon name="close" />
                             </button>
                         </div>
                     </header>

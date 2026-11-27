@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Modal from "@/components/ui/Modal";
+import Icon from "@/components/ui/Icon";
 import ResumeContent from "@/components/resume/ResumeContent";
 
 type ResumeDialogProps = {
@@ -14,18 +15,25 @@ export default function ResumeDialog({
     return (
         <Modal
             title="Resume"
-            triggerLabel={triggerLabel}
+            triggerLabel={
+                <>
+                    <Icon name="file-text" className="size-4" />
+                    {triggerLabel}
+                </>
+            }
             triggerClassName={triggerClassName}
             fallbackHref="/resume"
             wide
             actions={
                 <>
-                    <a href="/resume.pdf" download className="button-primary text-sm">
+                    <a href="/resume.pdf" download className="button-primary">
+                        <Icon name="download" className="size-4" />
                         Download PDF
                     </a>
 
-                    <Link href="/resume" className="button-secondary text-sm">
+                    <Link href="/resume" className="button-secondary">
                         Full page
+                        <Icon name="external-link" className="size-4" />
                     </Link>
                 </>
             }

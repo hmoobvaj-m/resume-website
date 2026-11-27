@@ -2,13 +2,38 @@
 
 :root {
   color-scheme: dark;
-  --background: #0a0a0a;
-  --foreground: #f5f5f5;
+
+  --background: #101419;
+  --foreground: #f1f5f9;
+
+  --surface: #1b222b;
+  --surface-raised: #222a34;
+  --surface-hover: #28323e;
+
+  --border: #303946;
+  --border-strong: #526071;
+
+  --muted: #a6b1bf;
+  --accent: #cbd5e1;
+  --accent-hover: #e2e8f0;
+  --accent-foreground: #111827;
+
+  --content-width: 72rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,6 +41,7 @@
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
+  scroll-padding-top: 6rem;
 }
 
 html:has(dialog[open]) {
@@ -23,14 +49,15 @@ html:has(dialog[open]) {
 }
 
 body {
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 dialog::backdrop {
-  background: rgb(0 0 0 / 75%);
-  backdrop-filter: blur(4px);
+  background: rgb(5 8 12 / 78%);
+  backdrop-filter: blur(6px);
 }
 
 button:not(:disabled) {
@@ -38,30 +65,79 @@ button:not(:disabled) {
 }
 
 :focus-visible {
-  outline: 2px solid #a3a3a3;
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 
 ::selection {
-  background: #525252;
-  color: #ffffff;
+  background: var(--border-strong);
+  color: var(--foreground);
 }
 
 @layer components {
+  .site-shell {
+    width: 100%;
+    max-width: var(--content-width);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .section-spacing {
+    @apply py-10 md:py-14;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-tight text-foreground md:text-3xl;
+  }
+
+  .section-description {
+    @apply mt-2 text-sm leading-7 text-muted md:text-base;
+  }
+
   .button-primary {
-    @apply inline-flex items-center justify-center rounded-lg border border-neutral-200 bg-neutral-200 px-5 py-2.5 font-medium text-neutral-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .button-secondary {
-    @apply inline-flex items-center justify-center rounded-lg border border-neutral-600 bg-transparent px-5 py-2.5 font-medium text-neutral-200 transition hover:border-neutral-400 hover:bg-neutral-800;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-transparent px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-surface-hover disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .icon-button {
+    @apply inline-flex size-11 items-center justify-center rounded-lg border border-border bg-surface text-muted transition-colors hover:border-border-strong hover:bg-surface-hover hover:text-foreground;
   }
 
   .surface-card {
-    @apply rounded-2xl border border-neutral-800 bg-neutral-900 p-6;
+    @apply rounded-xl border border-border bg-surface p-6;
+  }
+
+  .interactive-card {
+    @apply rounded-xl border border-border bg-surface p-6 transition-colors hover:border-border-strong hover:bg-surface-raised;
+  }
+
+  .tech-tag {
+    @apply inline-flex items-center rounded-md border border-border bg-surface-raised px-2.5 py-1 text-xs font-medium text-muted;
   }
 
   .form-input {
-    @apply w-full rounded-lg border border-neutral-600 bg-neutral-950 px-4 py-3 text-neutral-100 placeholder:text-neutral-500 focus:border-neutral-400;
+    @apply w-full rounded-lg border border-border-strong bg-surface-raised px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent;
+  }
+
+  .dialog-surface {
+    @apply m-auto w-[calc(100%-2rem)] overflow-hidden rounded-2xl border border-border-strong bg-surface text-foreground shadow-2xl;
+  }
+
+  .hero-background {
+    background:
+      radial-gradient(ellipse at 85% 30%,
+        rgb(148 163 184 / 7%),
+        transparent 55%),
+      var(--background);
+  }
+}
+
+@media (min-width: 768px) {
+  .site-shell {
+    padding-inline: 2rem;
   }
 }
 
