@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Experience from "@/components/sections/Experience";
@@ -25,9 +26,7 @@ export default function HomePage() {
                 <ContactMe />
             </main>
 
-            <footer className="mt-8 border-t border-border py-8 text-center text-sm text-muted">
-                Personal portfolio &amp; resume
-            </footer>
+            <Footer />
         </>
     );
 }

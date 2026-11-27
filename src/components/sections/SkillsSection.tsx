@@ -1,29 +1,49 @@
 import { resumeData } from "@/content/resume";
+import Icon, { type IconName } from "@/components/ui/Icon";
+
+const skillIcons: Record<string, IconName> = {
+    "Programming Languages": "code",
+    "Frameworks & Developer Tools": "layers",
+    "AI & Machine Learning": "brain",
+    "Infrastructure & Networking": "server",
+    "Enterprise Systems": "briefcase",
+    "Additional Skills": "check",
+};
 
 export default function SkillsSection() {
     return (
-        <section id="skills" className="scroll-mt-8 py-10 md:py-12">
-            <div className="mx-auto max-w-5xl px-6">
+        <section id="skills" className="section-spacing">
+            <div className="site-shell">
                 <div className="mb-6">
-                    <h2 className="text-2xl font-semibold md:text-3xl">
-                        Technical Skills
-                    </h2>
+                    <h2 className="section-title">Technical Skills</h2>
 
-                    <p className="mt-2 text-neutral-400">
-                        Technologies, frameworks, and technical competencies.
+                    <p className="section-description">
+                        Technologies and competencies across development, AI, and systems engineering.
                     </p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                     {resumeData.skills.map((group) => (
-                        <article key={group.title} className="surface-card">
-                            <h3 className="text-lg font-semibold text-neutral-100">
-                                {group.title}
-                            </h3>
+                        <article key={group.title} className="surface-card min-w-0">
+                            <div className="flex items-center gap-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-accent">
+                                    <Icon
+                                        name={skillIcons[group.title] ?? "layers"}
+                                        className="size-5"
+                                    />
+                                </div>
 
-                            <ul className="mt-4 flex flex-wrap gap-2">
+                                <h3 className="text-base font-semibold tracking-tight text-foreground">
+                                    {group.title}
+                                </h3>
+                            </div>
+
+                            <ul className="mt-5 flex flex-wrap gap-2">
                                 {group.items.map((skill) => (
-                                    <li key={skill} className="rounded-md border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-sm text-neutral-300">
+                                    <li
+                                        key={skill}
+                                        className="tech-tag max-w-full whitespace-normal break-words"
+                                    >
                                         {skill}
                                     </li>
                                 ))}
