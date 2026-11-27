@@ -1,32 +1,18 @@
-export type Project = {
-    title: string;
-    description: string;
-    tech: string[];
-    github?: string;
-    live?: string;
-    featured: boolean;
-};
+import { resumeData, type ResumeProject } from "@/content/resume";
 
-export const projects: Project[] = [
-    {
-        title: "Resume Website",
-        description: "Self-hosted portfolio site built with Next.js, TypeScript, and Docker behind a reverse proxy.",
-        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Docker"],
-        live: "https://professional.hmoobvaj.us",
-        featured: true
-    },
-    {
-        title: "IPEX-LLM",
-        description: "Performance layer on top of PyTorch that utilizes Intel's optimized mathematical operations instead of native PyTorch operations to allow better performance on Intel Hardware.",
-        tech: ["PyTorch", "Python", "C++", "Shell", "Dockerfile", "Lua"],
-        github: "https://github.com/intel/ipex-llm",
-        featured: true
-    },    
-    {
-        title: "Proxmox VE",
-        description: "An open-source server management platform with a web-based UI that integrates KVM hypervisor, Linux Containers (LXC), software-defined storage, and networking functionalities on a single platform.",
-        tech: ["Rust", "C", "JavaScript", "Perl", "Makefile"],
-        github: "https://github.com/proxmox",
-        featured: true
-    },
-];
+export type Project = Pick<
+    ResumeProject,
+    "title" | "subtitle" | "period" | "description" |
+    "tech" | "github" | "live" | "featured"
+>;
+
+export const projects: Project[] = resumeData.personalProjects.map((project) => ({
+    title: project.title,
+    subtitle: project.subtitle,
+    period: project.period,
+    description: project.description,
+    tech: project.tech,
+    github: project.github,
+    live: project.live,
+    featured: project.featured,
+}));

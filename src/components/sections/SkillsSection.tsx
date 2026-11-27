@@ -1,34 +1,37 @@
 import { resumeData } from "@/content/resume";
 
 export default function SkillsSection() {
-    const skillGroups = [
-        { category: "Programming", items: resumeData.skills.programming },
-        { category: "AI/ML", items: resumeData.skills.aiMl },
-        { category: "Robotics", items: resumeData.skills.robotics },
-        { category: "Infrastructure", items: resumeData.skills.infrastructure },
-    ]
-
     return (
-        <section className="py-8">
+        <section id="skills" className="scroll-mt-8 py-10 md:py-12">
             <div className="mx-auto max-w-5xl px-6">
-                <h2 className="text-2xl font-semibold md:text-3xl text-center">Skills</h2>
+                <div className="mb-6">
+                    <h2 className="text-2xl font-semibold md:text-3xl">
+                        Technical Skills
+                    </h2>
 
-                <div className="mt-8 grid gap-6 md:grid-cols-2">
-                    {skillGroups.map((group) => (
-                        <div key={group.category} className="rounded-2xl border border-neutral-500 p-6">
-                            <h3 className="text-lg font-semibold text-center">{group.category}</h3>
+                    <p className="mt-2 text-neutral-400">
+                        Technologies, frameworks, and technical competencies.
+                    </p>
+                </div>
 
-                            <ul className="mt-4 list-disc list-inside space-y-2">
-                                {group.items.map((item) => (
-                                    <li key={item} className="text-sm">
-                                        {item}
+                <div className="grid gap-4 md:grid-cols-2">
+                    {resumeData.skills.map((group) => (
+                        <article key={group.title} className="surface-card">
+                            <h3 className="text-lg font-semibold text-neutral-100">
+                                {group.title}
+                            </h3>
+
+                            <ul className="mt-4 flex flex-wrap gap-2">
+                                {group.items.map((skill) => (
+                                    <li key={skill} className="rounded-md border border-neutral-700 bg-neutral-800 px-3 py-1.5 text-sm text-neutral-300">
+                                        {skill}
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </article>
                     ))}
                 </div>
             </div>
         </section>
-    )
+    );
 }
