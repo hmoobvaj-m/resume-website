@@ -1,101 +1,220 @@
 export type ResumeProject = {
-title: string;
-bullets?: string[];
-subBullets?: string[];
+    title: string;
+    subtitle?: string;
+    period?: string;
+    description: string;
+    bullets: string[];
+    tech: string[];
+    featured: boolean;
+    github?: string;
+    live?: string;
+};
+
+export type ResumeSkillGroup = {
+    title: string;
+    items: string[];
 };
 
 export const resumeData = {
     name: "Matthew Vang",
     title: "Computer Science Student",
+    location: "Milwaukee, WI",
+
     summary:
-        "Senior at the University of Wisconsin–Milwaukee with interests in backend development, machine learning applications, robotics, networking, IoT technologies, and embedded systems. I enjoy working in Linux environments and building or contributing to open-source software related to homelab infrastructure.",
+        "Computer Science senior at the University of Wisconsin–Milwaukee with experience in technical documentation, document accessibility, software engineering, artificial intelligence, and virtualized infrastructure. Interested in developing reliable, secure, and practical software solutions through modern technologies.",
 
     education: [
         {
-        degree: "B.S. in Computer Science",
-        school: "University of Wisconsin–Milwaukee",
-        period: "Anticipated Fall 2027",
+            degree: "Bachelor of Science in Computer Science",
+            school: "University of Wisconsin–Milwaukee",
+            location: "Milwaukee, WI",
+            period: "Anticipated December 2026",
         },
     ],
 
     experience: [
         {
-        organization: "UW–Milwaukee",
-        role: "Desktop Support Technician",
-        period: "October 2022 - Current",
-        bullets: [
-            "Serve as a front-line contact for professors and faculty for all IT-related inquiries including granting user access, deploying software, basic network issues, and hardware/software issues.",
-            "Provide IT support to end-users through ticketing system over the phone, by email, through remote access, or by traveling to offsite locations.",
-            "Collaborate with a team of technicians to ensure efficient deployment and inventory of systems and peripherals.",
-            "Manage the deployment of Windows systems and peripherals to fulfill client purchasing and deployment requests.",
-            "Inventory and manage computer workstations and peripherals in a computer management system using Microsoft SCCM and Active Directory.",
-        ],
+            organization: "University of Wisconsin–Milwaukee",
+            role: "SAP Technical Writer",
+            period: "March 2026 – Present",
+            bullets: [
+                "Evaluate and remediate document accessibility using NVDA and JAWS, addressing screen reader compatibility, document tagging, heading hierarchies, and non-text content.",
+                "Standardize technical documentation and accessibility practices across SAP educational resources.",
+                "Leverage AI-assisted workflows to streamline technical content analysis, alternative text generation, and document remediation.",
+                "Translate complex SAP ERP business processes and application interfaces into accessible instructional documentation.",
+            ],
+        },
+        {
+            organization: "University of Wisconsin–Milwaukee",
+            role: "Desktop Support Technician",
+            period: "October 2022 – March 2026",
+            bullets: [
+                "Delivered frontline IT support to university faculty and staff, resolving hardware, software, networking, and user access issues.",
+                "Diagnosed and resolved technical incidents through ticketing systems, remote access, and on-site support.",
+                "Coordinated the deployment, configuration, and distribution of Windows workstations and peripherals.",
+                "Managed enterprise workstation inventories and device configurations using Microsoft SCCM and Active Directory.",
+            ],
         },
     ],
 
     personalProjects: [
         {
-            title: "Resume Website",
+            title: "StudySync",
+            subtitle: "AI-Powered Learning Platform | Senior Capstone Project",
+            description:
+                "A collaborative full-stack educational platform featuring retrieval-augmented generation, vector-based information retrieval, and LLM-powered study tools.",
             bullets: [
-                "Developed a responsive personal website to showcase my resume, projects, and to gain more experience in frontend development",
-                "Structured resume content in reusable TypeScript data objects for easier maintenance and updates",
-                "Uses Tailwind CSS to create a consistent UI across all sections and screen sizes",
-            ]
+                "Collaborate on the development of a full-stack, AI-powered educational platform.",
+                "Design modular backend architecture using the ports-and-adapters pattern to support extensible AI service integration.",
+                "Contribute to retrieval-augmented generation (RAG), vector-based information retrieval, and LLM-powered study tools.",
+            ],
+            tech: [
+                "Next.js",
+                "TypeScript",
+                "Python",
+                "FastAPI",
+                "RAG",
+                "LLMs",
+            ],
+            featured: true,
+        },
+        {
+            title: "Rockwell Automation × NVIDIA Hackathon",
+            subtitle: "Finalist | Team Code Crusaders",
+            period: "October 2026 – November 2026",
+            description:
+                "An AI-powered industrial manufacturing inspection solution leveraging computer vision, digital twins, and synthetic data to detect assembly defects.",
+            bullets: [
+                "Selected as a finalist for an AI-powered industrial manufacturing inspection solution.",
+                "Collaborated on a computer vision inspection architecture leveraging digital twins and synthetic data to identify manufacturing assembly defects.",
+                "Co-designed a counterfactual inspection methodology comparing real-world camera imagery against simulated manufacturing states to detect anomalies.",
+            ],
+            tech: [
+                "Computer Vision",
+                "Digital Twins",
+                "Synthetic Data",
+                "Artificial Intelligence",
+            ],
+            featured: true,
         },
         {
             title: "Proxmox Virtual Homelab",
+            subtitle: "Infrastructure & Systems Engineering",
+            description:
+                "Self-hosted virtualized infrastructure focused on network security, systems engineering, hardware-accelerated AI workloads, and intelligent automation.",
             bullets: [
-                "Operate a hypervisor to host multiple Linux containers (LXCs) and virtual machines (VMs) for hands-on practice.",
-                "Utilize the environment to strengthen skills in Linux, networking, firewall configuration, and system monitoring and management.",
-                "Deploy and manage self-hosted services, including:",
+                "Architect and administer virtualized infrastructure using Proxmox VE, Linux containers, virtual machines, and Docker.",
+                "Implement VLAN segmentation, firewall policies, VPN connectivity, and reverse proxies to secure self-hosted services.",
+                "Deploy hardware-accelerated AI workloads, IoT automation, DNS filtering, and intelligent device monitoring services.",
             ],
-            subBullets: [
-                "AI MCP Server for monitoring 3D printers and detecting failures.",
-                "Home Assistant for IoT device management.",
-                "Jellyfin for media streaming.",
-                "Pi-hole for network-wide ad blocking.",
-                "IPEX-LLM and Stable Diffusion for testing AI workloads on Intel Arc platform.",
-                "Nginx Proxy Manager for secure reverse proxying of exposed services.",
+            tech: [
+                "Proxmox VE",
+                "Linux",
+                "Docker",
+                "LXC",
+                "Networking",
+                "Virtualization",
             ],
+            featured: true,
         },
         {
             title: "IPEX-LLM",
+            description:
+                "Self-hosted, GPU-accelerated large language model inference integrated with Home Assistant for natural language control of IoT devices.",
             bullets: [
-            "Installed and self-hosted Intel’s IPEX-LLM on Linux kernel 6.5, configuring runtime dependencies in a Conda environment with PyTorch and Intel oneAPI for optimized inference performance.",
-            "Compiled and tuned the Linux kernel to ensure compatibility across shared libraries and improve efficiency for AI workloads.",
-            "Integrated the hosted LLM with Home Assistant, enabling natural language commands through function calling to control IoT smart devices or provide intelligent responses.",
+                "Deployed and configured Intel IPEX-LLM using Linux, Conda, PyTorch, and Intel oneAPI for GPU-accelerated inference.",
+                "Compiled and configured the Linux kernel to address compatibility requirements for AI workloads.",
+                "Integrated self-hosted LLM inference with Home Assistant through function calling, enabling natural language control of IoT devices.",
             ],
+            tech: [
+                "PyTorch",
+                "Intel oneAPI",
+                "IPEX-LLM",
+                "Linux",
+                "Conda",
+                "Home Assistant",
+            ],
+            featured: true,
         },
     ] as ResumeProject[],
 
-    skills: {
-        programming: [
-        "Object-Oriented Programming in Java",
-        "Systems Programming in C/UNIX",
-        "Python",
-        "JavaScript",
-        "TypeScript",
-        "Git",
-        ],
-        aiMl: [
-        "PyTorch",
-        "Intel oneAPI",
-        "Conda",
-        "IPEX-LLM",
-        "Kernel Tuning/Configuration",
-        "YOLOv9",
-        ],
-        robotics: [
-        "Arduino",
-        "STM32",
-        "CAD",
-        "Computer Hardware",
-        ],
-        infrastructure: [
-        "Microsoft SCCM",
-        "Active Directory",
-        "Linux Systems Management",
-        "Networking (TCP/IP, Firewalls, Reverse Proxy)",
-        ],
-    },
+    skills: [
+        {
+            title: "Programming Languages",
+            items: [
+                "Java",
+                "C",
+                "Python",
+                "TypeScript",
+                "JavaScript",
+            ],
+        },
+        {
+            title: "Frameworks & Developer Tools",
+            items: [
+                "React",
+                "Next.js",
+                "FastAPI",
+                "REST APIs",
+                "Git",
+                "GitHub",
+                "GitHub Actions",
+            ],
+        },
+        {
+            title: "AI & Machine Learning",
+            items: [
+                "PyTorch",
+                "OpenCV",
+                "Computer Vision",
+                "Large Language Models (LLMs)",
+                "Retrieval-Augmented Generation (RAG)",
+                "Synthetic Data Generation",
+                "Digital Twins",
+                "Intel oneAPI",
+                "IPEX-LLM",
+                "Hardware-Accelerated Inference",
+            ],
+        },
+        {
+            title: "Infrastructure & Networking",
+            items: [
+                "Linux",
+                "Docker",
+                "Proxmox VE",
+                "LXC",
+                "Virtualization",
+                "TCP/IP",
+                "VLANs",
+                "Firewalls",
+                "DNS",
+                "VPNs",
+                "Reverse Proxies",
+            ],
+        },
+        {
+            title: "Enterprise Systems",
+            items: [
+                "SAP S/4HANA",
+                "SAP Fiori",
+                "ERP",
+                "Microsoft SCCM",
+                "Active Directory",
+            ],
+        },
+        {
+            title: "Additional Skills",
+            items: [
+                "Arduino",
+                "STM32",
+                "CAD",
+                "Technical Writing",
+                "WCAG",
+                "ADA Accessibility",
+                "Document Remediation",
+                "NVDA",
+                "JAWS",
+            ],
+        },
+    ] as ResumeSkillGroup[],
 };
