@@ -2,10 +2,10 @@ import { projects } from "@/content/projects";
 import Icon, { type IconName } from "@/components/ui/Icon";
 
 const projectIcons: Record<string, IconName> = {
-    "StudySync": "brain",
-    "Rockwell Automation × NVIDIA Hackathon": "scan",
-    "Proxmox Virtual Homelab": "server",
-    "IPEX-LLM": "cpu",
+    "studysync": "brain",
+    "manufacturing-inspection": "scan",
+    "proxmox-homelab": "server",
+    "ipex-llm": "cpu",
 };
 
 export default function FeaturedProjects() {
@@ -25,13 +25,15 @@ export default function FeaturedProjects() {
                 <div className="grid gap-4 md:grid-cols-2">
                     {featuredProjects.map((project) => (
                         <article
-                            key={project.title}
-                            className="surface-card flex h-full min-w-0 flex-col"
+                            key={project.id}
+                            id={`project-${project.id}`}
+                            tabIndex={-1}
+                            className="surface-card flex h-full min-w-0 flex-col scroll-mt-4 target:border-accent"
                         >
                             <div className="mb-5 flex items-start justify-between gap-4">
                                 <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-raised text-accent">
                                     <Icon
-                                        name={projectIcons[project.title] ?? "code"}
+                                        name={projectIcons[project.id] ?? "code"}
                                         className="size-6"
                                     />
                                 </div>
@@ -69,24 +71,14 @@ export default function FeaturedProjects() {
                                 {(project.github || project.live) && (
                                     <div className="mt-5 flex flex-wrap gap-3 border-t border-border pt-5">
                                         {project.github && (
-                                            <a
-                                                href={project.github}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="button-secondary"
-                                            >
+                                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="button-secondary">
                                                 <Icon name="github" className="size-4" />
                                                 Source repository
                                             </a>
                                         )}
 
                                         {project.live && (
-                                            <a
-                                                href={project.live}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="button-secondary"
-                                            >
+                                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="button-secondary">
                                                 View project
                                                 <Icon name="external-link" className="size-4" />
                                             </a>

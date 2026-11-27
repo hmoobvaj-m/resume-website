@@ -1,10 +1,11 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
-import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import Experience from "@/components/sections/Experience";
-import ContactMe from "@/components/sections/ContactMe";
+import Achievements from "@/components/sections/Achievements";
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import SkillsSection from "@/components/sections/SkillsSection";
+import ContactMe from "@/components/sections/ContactMe";
 
 export default function HomePage() {
     return (
@@ -21,6 +22,7 @@ export default function HomePage() {
             <main id="main-content" tabIndex={-1}>
                 <HeroSection />
                 <Experience />
+                <Achievements />
                 <FeaturedProjects />
                 <SkillsSection />
                 <ContactMe />
