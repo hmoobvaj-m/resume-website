@@ -1,3 +1,4 @@
+
 import { resumeData } from "@/content/resume";
 import Icon from "@/components/ui/Icon";
 
@@ -20,7 +21,7 @@ export default function ResumeContent() {
 
             <section className="border-t border-border py-6">
                 <h3 className="flex items-center gap-3 text-xl font-semibold text-foreground">
-                    <Icon name="file-text" className="text-accent" />
+                    <Icon name="file-text" className="size-5 text-accent" />
                     Summary
                 </h3>
 
@@ -31,7 +32,7 @@ export default function ResumeContent() {
 
             <section className="border-t border-border py-6">
                 <h3 className="flex items-center gap-3 text-xl font-semibold text-foreground">
-                    <Icon name="graduation-cap" className="text-accent" />
+                    <Icon name="graduation-cap" className="size-5 text-accent" />
                     Education
                 </h3>
 
@@ -62,7 +63,7 @@ export default function ResumeContent() {
 
             <section className="border-t border-border py-6">
                 <h3 className="flex items-center gap-3 text-xl font-semibold text-foreground">
-                    <Icon name="briefcase" className="text-accent" />
+                    <Icon name="briefcase" className="size-5 text-accent" />
                     Work Experience
                 </h3>
 
@@ -98,7 +99,7 @@ export default function ResumeContent() {
             {resumeData.achievements.length > 0 && (
                 <section className="border-t border-border py-6">
                     <h3 className="flex items-center gap-3 text-xl font-semibold text-foreground">
-                        <Icon name="award" className="text-accent" />
+                        <Icon name="award" className="size-5 text-accent" />
                         Honors &amp; Awards
                     </h3>
 
@@ -138,7 +139,7 @@ export default function ResumeContent() {
 
             <section className="border-t border-border py-6">
                 <h3 className="flex items-center gap-3 text-xl font-semibold text-foreground">
-                    <Icon name="layers" className="text-accent" />
+                    <Icon name="layers" className="size-5 text-accent" />
                     Technical Projects
                 </h3>
 
@@ -173,7 +174,7 @@ export default function ResumeContent() {
 
             <section className="border-t border-border py-6">
                 <h3 className="flex items-center gap-3 text-xl font-semibold text-foreground">
-                    <Icon name="code" className="text-accent" />
+                    <Icon name="code" className="size-5 text-accent" />
                     Technical Skills
                 </h3>
 
