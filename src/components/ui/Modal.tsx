@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useId, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
-import Icon from "@/components/ui/Icon";
+import Icon, { type IconName } from "@/components/ui/Icon";
 
 type ModalProps = {
     title: string;
+    titleIcon?: IconName;
     triggerLabel: ReactNode;
     triggerClassName?: string;
     fallbackHref?: string;
@@ -17,6 +18,7 @@ type ModalProps = {
 
 export default function Modal({
     title,
+    titleIcon,
     triggerLabel,
     triggerClassName = "button-secondary",
     fallbackHref,
@@ -72,26 +74,32 @@ export default function Modal({
                 className={`dialog-surface ${wide ? "max-w-4xl" : "max-w-xl"}`}
             >
                 <div className="flex max-h-[90dvh] flex-col">
-                    <header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-border bg-surface-raised px-5 py-4">
-                        <h2 id={titleId} className="text-xl font-semibold tracking-tight">
+                    <header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-border bg-surface-raised px-4 py-3 sm:px-6 sm:py-4">
+                        <h2 id={titleId} className="flex min-w-0 flex-1 items-center gap-3 text-lg font-semibold tracking-tight sm:text-xl">
+                            {titleIcon && (
+                                <Icon name={titleIcon} className="size-6 text-accent" />
+                            )}
+
                             {title}
                         </h2>
 
-                        <div className="flex flex-wrap items-center gap-2">
-                            {actions}
+                        <button
+                            type="button"
+                            onClick={closeDialog}
+                            aria-label="Close dialog"
+                            className="icon-button order-2 sm:order-3"
+                        >
+                            <Icon name="close" />
+                        </button>
 
-                            <button
-                                type="button"
-                                onClick={closeDialog}
-                                aria-label="Close dialog"
-                                className="icon-button"
-                            >
-                                <Icon name="close" />
-                            </button>
-                        </div>
+                        {actions && (
+                            <div className="order-3 flex w-full flex-wrap items-center gap-2 sm:order-2 sm:w-auto">
+                                {actions}
+                            </div>
+                        )}
                     </header>
 
-                    <div className="min-h-0 overflow-y-auto overscroll-contain p-5 md:p-8">
+                    <div className="min-h-0 overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-8">
                         {isOpen && children}
                     </div>
                 </div>

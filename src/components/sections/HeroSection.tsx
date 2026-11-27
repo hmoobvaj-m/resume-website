@@ -26,12 +26,12 @@ export default function HeroSection() {
 
                         <div className="mt-7 flex flex-wrap items-center gap-3">
                             <ResumeDialog
-                                triggerLabel="View resume"
+                                triggerLabel="View Resume"
                                 triggerClassName="button-primary"
                             />
 
                             <ContactDialog
-                                triggerLabel="Contact me"
+                                triggerLabel="Contact Me"
                                 triggerClassName="button-secondary"
                             />
                         </div>

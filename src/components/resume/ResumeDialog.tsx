@@ -9,12 +9,13 @@ type ResumeDialogProps = {
 };
 
 export default function ResumeDialog({
-    triggerLabel = "View full resume",
+    triggerLabel = "View Full Resume",
     triggerClassName = "button-secondary",
 }: ResumeDialogProps) {
     return (
         <Modal
             title="Resume"
+            titleIcon="file-text"
             triggerLabel={
                 <>
                     <Icon name="file-text" className="size-4" />
@@ -32,7 +33,7 @@ export default function ResumeDialog({
                     </a>
 
                     <Link href="/resume" className="button-secondary">
-                        Full page
+                        Full Page
                         <Icon name="external-link" className="size-4" />
                     </Link>
                 </>

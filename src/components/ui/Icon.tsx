@@ -21,7 +21,8 @@ export type IconName =
     | "close"
     | "check"
     | "send"
-    | "award";
+    | "award"
+    | "user";
 
 type IconProps = {
     name: IconName;
@@ -120,6 +121,12 @@ const icons: Record<IconName, ReactNode> = {
             <circle cx="12" cy="8" r="5" />
             <path d="m8.2 11.3-2.7 9.2 6.5-3 6.5 3-2.7-9.2" />
             <path d="m10 8 1.4 1.4L14 6.8" />
+        </>
+    ),
+    user: (
+        <>
+            <circle cx="12" cy="7" r="4" />
+            <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
         </>
     ),
 };

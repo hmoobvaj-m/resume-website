@@ -64,7 +64,7 @@ export default function Achievements() {
                                                 href={`#project-${relatedProject.id}`}
                                                 className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-foreground hover:underline"
                                             >
-                                                View technical project
+                                                View Technical Project
                                                 <Icon name="arrow-right" className="size-4" />
                                             </a>
                                         )}

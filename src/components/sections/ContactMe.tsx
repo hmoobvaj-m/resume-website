@@ -11,7 +11,7 @@ export default function ContactMe() {
                         <Icon name="mail" className="size-6" />
                     </div>
 
-                    <h2 className="section-title">Get in touch</h2>
+                    <h2 className="section-title">Get in Touch</h2>
 
                     <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted md:text-base">
                         Interested in discussing career opportunities,
@@ -20,7 +20,7 @@ export default function ContactMe() {
 
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                         <ContactDialog
-                            triggerLabel="Send a message"
+                            triggerLabel="Send a Message"
                             triggerClassName="button-primary"
                         />
 

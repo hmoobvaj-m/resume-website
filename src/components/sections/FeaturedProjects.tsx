@@ -73,13 +73,13 @@ export default function FeaturedProjects() {
                                         {project.github && (
                                             <a href={project.github} target="_blank" rel="noopener noreferrer" className="button-secondary">
                                                 <Icon name="github" className="size-4" />
-                                                Source repository
+                                                Source Repository
                                             </a>
                                         )}
 
                                         {project.live && (
                                             <a href={project.live} target="_blank" rel="noopener noreferrer" className="button-secondary">
-                                                View project
+                                                View Project
                                                 <Icon name="external-link" className="size-4" />
                                             </a>
                                         )}

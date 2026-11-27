@@ -94,7 +94,7 @@ export default function Footer() {
                         </a>
 
                         <a href="#about" className="inline-flex min-h-11 items-center gap-2 transition-colors hover:text-foreground">
-                            Back to top
+                            Back to Top
                             <Icon name="arrow-right" className="size-4 -rotate-90" />
                         </a>
                     </div>

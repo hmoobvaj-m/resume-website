@@ -9,13 +9,14 @@ type ContactDialogProps = {
 };
 
 export default function ContactDialog({
-    triggerLabel = "Contact me",
+    triggerLabel = "Contact Me",
     triggerClassName = "button-secondary",
     showIcon = true,
 }: ContactDialogProps) {
     return (
         <Modal
-            title="Contact me"
+            title="Contact Me"
+            titleIcon="mail"
             triggerLabel={
                 <>
                     {showIcon && <Icon name="mail" className="size-4" />}

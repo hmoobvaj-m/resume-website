@@ -16,7 +16,7 @@ export default function Experience() {
           </div>
 
           <ResumeDialog
-            triggerLabel="View full resume"
+            triggerLabel="View Full Resume"
             triggerClassName="button-secondary"
           />
         </div>
