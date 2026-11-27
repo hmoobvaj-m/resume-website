@@ -180,7 +180,7 @@ export default function ContactForm() {
 
                 <label className="block space-y-2">
                     <span className="text-sm font-medium text-foreground">
-                        Email address
+                        Email Address
                     </span>
 
                     <div className="relative">
