@@ -30,7 +30,8 @@ jobs:
         run: GOBIN="$RUNNER_TEMP" go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
 
       - name: Validate workflow configuration
-        run: "$RUNNER_TEMP/actionlint"
+        run: |
+          "$RUNNER_TEMP/actionlint"
 
       - name: Analyze workflow security
         uses: zizmorcore/zizmor-action@bd12b495c90993a4301c73398142281a61499af3 # v0.9.0
