@@ -12,7 +12,7 @@ export default function Achievements() {
                     <h2 className="section-title">Honors &amp; Achievements</h2>
 
                     <p className="section-description">
-                        Professional, academic, and competitive recognition.
+                        Professional, Academic, and Competitive Recognition.
                     </p>
                 </div>
 
