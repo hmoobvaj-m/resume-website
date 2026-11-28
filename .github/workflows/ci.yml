@@ -46,7 +46,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run ESLint
-        run: pnpm lint
+        run: pnpm lint --max-warnings=0
 
       - name: Run security regression tests
         run: pnpm test
@@ -61,6 +61,12 @@ jobs:
           test -s out/index.html
           test -s out/resume.html || test -s out/resume/index.html
           test -s out/resume.pdf
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run browser regression tests
+        run: pnpm test:e2e
 
       - name: Audit all dependencies
         run: pnpm audit
