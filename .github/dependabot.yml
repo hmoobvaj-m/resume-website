@@ -9,6 +9,9 @@ updates:
       time: "08:00"
       timezone: "America/Chicago"
 
+    cooldown:
+      default-days: 7
+
     open-pull-requests-limit: 3
 
     groups:
@@ -31,6 +34,9 @@ updates:
       day: "monday"
       time: "08:00"
       timezone: "America/Chicago"
+
+    cooldown:
+      default-days: 7
 
     open-pull-requests-limit: 3
 
