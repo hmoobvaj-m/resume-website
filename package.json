@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/generate-csp.mjs out",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test tests/contact/*.test.mjs",
+    "test": "node --test tests/contact/*.test.mjs tests/csp/*.test.mjs",
+    "test:csp": "node --test tests/csp/*.test.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "serve:test": "serve out --listen tcp://127.0.0.1:4173"
@@ -27,6 +28,7 @@
     "eslint": "^10.15.0",
     "eslint-config-next": "16.4.6",
     "miniflare": "5.20261127.0-beta",
+    "parse5": "8.1.1",
     "serve": "14.2.8",
     "tailwindcss": "^4.3.5",
     "typescript": "^5"
